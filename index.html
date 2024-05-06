@@ -4,22 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversation Trainer</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Basic styling for the chat interface */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .user-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="prompt">
-            <p>Enter the instructor's prompt here:</p>
-            <!-- Instructor's prompt input -->
+    <div class="chat-container">
+        <h1>Conversation Trainer</h1>
+        <div class="chat-box" id="chatBox">
+            <!-- Display chat messages here -->
         </div>
-        <div class="response">
-            <p>Your response:</p>
-            <!-- Player's response input -->
-        </div>
-        <div class="instructor-response">
-            <p>Instructor's selected response:</p>
-            <!-- Instructor's selected response -->
-        </div>
+        <input type="text" class="user-input" id="userInput" placeholder="Type your response...">
+        <button onclick="sendMessage()">Send</button>
     </div>
+
+    <script>
+        // Simulate instructor prompts and player responses
+        const chatBox = document.getElementById('chatBox');
+        const userInput = document.getElementById('userInput');
+
+        function displayMessage(message, isPlayer) {
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = message;
+            if (isPlayer) {
+                messageDiv.style.textAlign = 'right';
+                messageDiv.style.backgroundColor = '#f0f0f0';
+            }
+            chatBox.appendChild(messageDiv);
+        }
+
+        function sendMessage() {
+            const userResponse = userInput.value;
+            displayMessage(userResponse, true);
+            // TODO: Send user response to backend and get instructor-selected response
+            // For now, let's assume the instructor's response:
+            const instructorResponse = "Great job!";
+            displayMessage(instructorResponse, false);
+            userInput.value = ''; // Clear input field
+        }
+    </script>
 </body>
 </html>
