@@ -41,31 +41,5 @@
         <input type="text" class="user-input" id="userInput" placeholder="Type your response...">
         <button onclick="sendMessage()">Send</button>
     </div>
-
-    <script>
-        // Simulate instructor prompts and player responses
-        const chatBox = document.getElementById('chatBox');
-        const userInput = document.getElementById('userInput');
-
-        function displayMessage(message, isPlayer) {
-            const messageDiv = document.createElement('div');
-            messageDiv.textContent = message;
-            if (isPlayer) {
-                messageDiv.style.textAlign = 'right';
-                messageDiv.style.backgroundColor = '#f0f0f0';
-            }
-            chatBox.appendChild(messageDiv);
-        }
-
-        function sendMessage() {
-            const userResponse = userInput.value;
-            displayMessage(userResponse, true);
-            // TODO: Send user response to backend and get instructor-selected response
-            // For now, let's assume the instructor's response:
-            const instructorResponse = "Great job!";
-            displayMessage(instructorResponse, false);
-            userInput.value = ''; // Clear input field
-        }
-    </script>
 </body>
 </html>
